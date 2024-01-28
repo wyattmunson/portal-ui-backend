@@ -58,9 +58,12 @@ def check_versions():
     cmd_array = command_list
 
     for index, item in enumerate(command_list):
-        output = subprocess.check_output(command_list[index]["cmd"])
-        # print(cmd_array[item])
-        cmd_array[index]["output"] = str(output)
+        try:
+            output = subprocess.check_output(command_list[index]["cmd"])
+            # print(cmd_array[item])
+            cmd_array[index]["output"] = str(output)
+        except:
+            cmd_array[index]["output"] = "NOT INSTALLED"
 
     return cmd_array
 
